@@ -1,29 +1,15 @@
-var Bk = (function(){
-  var that = {};
+var AUTH_URL = 'http://linkedin-crx.appspot.com/authenticate';
+
+function findProfiles(emails){
   
-  that.getProfiles = function(params){
-    var result = {}
-    if(localStorage['token']){
-      result.ok = true;
-      result.profiles = findProfiles(params.emails);
-    }else{
-      result.ok = false;
-      result.authUrl = AUTH_URL;
-    }
-  }
-  
-  that.handle = function(request, response){
-    var action = this[request.action];
-    if(!action){
-      response({'error': request.action + ' not found'});
-    }else{
-      var result = action(request.params);
-      if(response) response(result);
-    }
-  }
-  return that;
-})();
+}
 
 chrome.extension.onRequest.addListener(function(request, sender, response){
-  Bk.handle(request,response);
+  if(request.action == 'findProfiles'){
+    if(localStorage['tk']){
+      response({'code':'200','profiles':findProfiles(request.emails)})
+    }else{
+      response({'code':'401','auth':AUTH_URL});
+    }
+  }
 });
