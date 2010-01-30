@@ -1,0 +1,19 @@
+{
+	"name":"Who's In",
+	"version":"0.1",
+	"description":"LinkedIn Chrome Extension",
+	"permissions":
+	[
+		"http://linkedin-crx.appspot.com/*"
+	],
+	"content_scripts":
+	[{
+		"matches":["http://*/*"],
+		"js": [
+				"scripts/jquery.min.js",
+				"scripts/wi.js",
+				"scripts/content.js"
+			]
+	}],
+	"background_page":"pages/back.html"
+}
