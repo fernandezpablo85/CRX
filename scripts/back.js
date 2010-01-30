@@ -1,12 +1,18 @@
 var Bk = (function(){
   var that = {};
   
-  that.authenticate = function(params){
-    return {'token':'here you go sir'};
+  that.getProfiles = function(params){
+    var result = {}
+    if(localStorage['token']){
+      result.ok = true;
+      result.profiles = findProfiles(params.emails);
+    }else{
+      result.ok = false;
+      result.authUrl = AUTH_URL;
+    }
   }
   
   that.handle = function(request, response){
-    alert('reach');
     var action = this[request.action];
     if(!action){
       response({'error': request.action + ' not found'});
