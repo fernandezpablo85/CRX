@@ -12,7 +12,10 @@
 		"js": [
 				"scripts/jquery.min.js",
 				"scripts/content.js"
-			]
+			],
+		"css":[
+		    "css/main.css"
+		]
 	}],
 	"background_page":"pages/back.html"
 }

@@ -30,11 +30,9 @@ function createAuthForms(auth_url){
     $(this).wrap($wrapper);
   });
   $anchor = $('<a/>').attr('href','http://www.linkedin.com').
-                      addClass('li_ext_icon').
-                      css({'text-decoration':'none','display':'none'});
+                      addClass('li_ext_icon');
   
-  $icon = $('<img/>').attr('src',chrome.extension.getURL('img/icon.png')).
-                      css({'vertical-align':'middle','padding-left':'5px'});
+  $icon = $('<img/>').attr('src',chrome.extension.getURL('img/icon.png'));
   $anchor.append($icon);
   $('.li_ext_wrap').append($anchor);
 }
