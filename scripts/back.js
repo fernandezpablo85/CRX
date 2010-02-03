@@ -1,15 +1,11 @@
 var AUTH_URL = 'http://linkedin-crx.appspot.com/authenticate';
 
-function findProfiles(emails){
-  
-}
-
 chrome.extension.onRequest.addListener(function(request, sender, response){
-  if(request.action == 'findProfiles'){
+  if(request.action == 'isAuth'){
     if(localStorage['tk']){
-      response({'code':'200','profiles':findProfiles(request.emails)})
+      response({ok:true})
     }else{
-      response({'code':'401','auth':AUTH_URL});
+      response({ok:false});
     }
   }
 });
