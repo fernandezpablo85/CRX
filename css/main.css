@@ -2,27 +2,20 @@ span.li_ext_wrap {
   position:relative;
 }
 
-span.li_ext_wrap a.li_ext_icon {
-  text-decoration:none;
-  border:none;
+span.li_ext_wrap img.li_ext_icon {
   display:none;
-}
-
-span.li_ext_wrap a.li_ext_icon:hover{
   text-decoration:none;
+  cursor:pointer;
   border:none;
-}
-
-span.li_ext_wrap a.li_ext_icon img{
   vertical-align:middle;
   padding-left:5px;
 }
 
-div.li_ext_popup {
-  width:150px;
-  top:-120px;
-  left:160px;
-  position:absolute;
+span.li_ext_wrap div.li_ext_popup {
+  width:150px !important;
+  top:-120px !important;
+  left:160px !important;
+  position:absolute !important;
   border:1px solid gray;
   background:#000;
   color:#fff;

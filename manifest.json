@@ -4,7 +4,8 @@
 	"description":"LinkedIn Chrome Extension",
 	"permissions":
 	[
-		"http://linkedin-crx.appspot.com/*"
+		"http://linkedin-crx.appspot.com/*",
+		"tabs"
 	],
 	"content_scripts":
 	[{

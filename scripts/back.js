@@ -7,5 +7,7 @@ chrome.extension.onRequest.addListener(function(request, sender, response){
     }else{
       response({ok:false});
     }
+  }else if(request.action == 'newTab'){
+    chrome.tabs.create({'url':request.tab});
   }
 });

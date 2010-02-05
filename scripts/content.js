@@ -16,30 +16,39 @@ if(emails.length > 0){
 }
 
 function createAuthForms(popupContent){
-  $popup = $('<div/>').addClass('li_ext_popup').html(popupContent);
-  $wrapper = $('<span/>').addClass('li_ext_wrap');
-  
-  $wrapper.hover(function(event){
-    $(this).children('a.li_ext_icon').stop(true,true).fadeIn('slow');
-  },function(event){
-    $(this).children('a.li_ext_icon').fadeOut(600);
-  })
-  
   $emails.each(function(){
+    $popup = $('<div/>').addClass('li_ext_popup').html(popupContent);
+    $wrapper = $('<span/>').addClass('li_ext_wrap');
+    $icon = $('<img/>').attr('src',chrome.extension.getURL('img/icon.jpg')).addClass('li_ext_icon');
+        
     $(this).wrap($wrapper);
     $(this).parent().append($popup);
+    $(this).parent().append($icon);
   });
   
-  $anchor = $('<a/>').addClass('li_ext_icon').attr('href','#');
-  $anchor.hover(function(event){
+  $('.li_ext_wrap').live('mouseenter',function(){
+    $(this).children('.li_ext_icon').stop(true,true).fadeIn('slow');
+  });
+  $('.li_ext_wrap').live('mouseleave',function(){
+    $(this).children('.li_ext_icon').fadeOut(600);
+  });
+  
+  
+  $('.li_ext_icon').live('mouseenter',function(){
     $(this).prev('.li_ext_popup').stop(true,true).fadeIn('slow');
-  },function(event){
+  });
+  
+  $('.li_ext_icon').live('mouseleave',function(event){
     $(this).prev('.li_ext_popup').fadeOut(600);    
   });
   
-  $icon = $('<img/>').attr('src',chrome.extension.getURL('img/icon.png'));
-  $anchor.append($icon);
-  $('.li_ext_wrap').append($anchor);
+  $('.li_ext_icon').live('click',function(event){
+    newTab('http://linkedin-crx.appspot.com/authorize');
+  });
+}
+
+function newTab(url){
+  chrome.extension.sendRequest({'action':'newTab','tab':url});
 }
 
 function getOk(){
@@ -47,5 +56,5 @@ function getOk(){
 }
 
 function getAuth(){
-  return "<p>Too bad you must <a href='http://linkedin-crx.appspot.com/authenticate'>authenticate</a>"
+  return "<p>Click to authenticate</p>"
 }
