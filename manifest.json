@@ -1,7 +1,10 @@
 {
-	"name":"Who's In",
+	"name":"LinkedIn Chrome Extension",
 	"version":"0.1",
-	"description":"LinkedIn Chrome Extension",
+	"description":"Discover contacts world-wide",
+	"icons":{
+	  "48":"img/ext_logo.png"
+	},
 	"permissions":
 	[
 		"http://linkedin-crx.appspot.com/*",
