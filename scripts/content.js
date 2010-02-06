@@ -1,5 +1,11 @@
 var $emails = $('a[href^=mailto:]');
 
+var  contents = "You must <a id='li_login'>Authenticate</a> in order to use this extension";
+
+var $authTooltip = $('<div/>').attr('id','li_ext_unauth').addClass('li_ext_tooltip').html(contents);
+
+$('body').append($authTooltip);
+
 var emails = [];
 $emails.each(function(){
   emails.push(this.href);
@@ -8,21 +14,20 @@ $emails.each(function(){
 if(emails.length > 0){
   chrome.extension.sendRequest({'action':'isAuth'}, function(response){
     if(response.ok){
-      createAuthForms(getOk());
+      createAuthForms();
     }else{
-      createAuthForms(getAuth());
+      createAuthForms();
     }
   });
 }
 
-function createAuthForms(popupContent){
+function createAuthForms(){
   $emails.each(function(){
-    $popup = $('<div/>').addClass('li_ext_popup').html(popupContent);
     $wrapper = $('<span/>').addClass('li_ext_wrap');
     $icon = $('<img/>').attr('src',chrome.extension.getURL('img/icon.jpg')).addClass('li_ext_icon');
+    $icon.tooltip({tip:'#li_ext_unauth',effect:'fade'})
         
     $(this).wrap($wrapper);
-    $(this).parent().append($popup);
     $(this).parent().append($icon);
   });
   
@@ -33,28 +38,11 @@ function createAuthForms(popupContent){
     $(this).children('.li_ext_icon').fadeOut(600);
   });
   
-  
-  $('.li_ext_icon').live('mouseenter',function(){
-    $(this).prev('.li_ext_popup').stop(true,true).fadeIn('slow');
-  });
-  
-  $('.li_ext_icon').live('mouseleave',function(event){
-    $(this).prev('.li_ext_popup').fadeOut(600);    
-  });
-  
-  $('.li_ext_icon').live('click',function(event){
+  $('#li_login').click(function(){
     newTab('http://linkedin-crx.appspot.com/authorize');
   });
 }
 
 function newTab(url){
   chrome.extension.sendRequest({'action':'newTab','tab':url});
-}
-
-function getOk(){
-  return "<p>Cool You're authenticated</p>"
-}
-
-function getAuth(){
-  return "<p>Click to authenticate</p>"
 }

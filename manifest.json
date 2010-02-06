@@ -15,6 +15,7 @@
 		"matches":["http://*/*"],
 		"js": [
 				"scripts/jquery.min.js",
+				"scripts/jquery.tools.min.js",
 				"scripts/content.js"
 			],
 		"css":[

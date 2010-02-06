@@ -13,12 +13,33 @@ span.li_ext_wrap img.li_ext_icon {
 
 span.li_ext_wrap div.li_ext_popup {
   width:150px !important;
-  top:-120px !important;
-  left:160px !important;
+  top:-20px !important;
+  left:60px !important;
   position:absolute !important;
   border:1px solid gray;
   background:#000;
   color:#fff;
   opacity:0.9;
   display:none;
+}
+
+.li_ext_tooltip {
+  display:none;
+  background:transparent url(http://static.flowplayer.org/tools/img/tooltip/black_arrow.png); 
+  font-size:12px; 
+  height:70px; 
+  width:160px; 
+  padding:25px;
+  color:#fff;
+  font-size:13px;
+}
+
+.li_ext_tooltip a{
+  color:#3CF;
+  cursor:pointer;
+}
+
+.li_ext_tooltip a:hover{
+  color:#3CF;
+  text-decoration:underline;
 }
