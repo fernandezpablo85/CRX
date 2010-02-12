@@ -39,10 +39,6 @@ function createAuthForms(){
   });
   
   $('#li_login').click(function(){
-    newTab('http://linkedin-crx.appspot.com/authorize');
+	  chrome.extension.sendRequest({'action':'doAuth'});
   });
-}
-
-function newTab(url){
-  chrome.extension.sendRequest({'action':'newTab','tab':url});
 }

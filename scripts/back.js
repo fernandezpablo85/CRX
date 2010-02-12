@@ -1,5 +1,3 @@
-var AUTH_URL = 'http://linkedin-crx.appspot.com/authenticate';
-
 chrome.extension.onRequest.addListener(function(request, sender, response){
   if(request.action == 'isAuth'){
     if(localStorage['tk']){
@@ -7,7 +5,12 @@ chrome.extension.onRequest.addListener(function(request, sender, response){
     }else{
       response({ok:false});
     }
-  }else if(request.action == 'newTab'){
-    chrome.tabs.create({'url':request.tab});
-  }
+  }else if(request.action == 'doAuth'){
+    var success = function(data,code){
+      var token = data.split('&')[0];
+      var url = "https://api.linkedin.com/uas/oauth/authorize?" + token;
+  		chrome.tabs.create({'url':url});
+  	}
+    $.ajax({url:'http://linkedin-crx.appspot.com/auth', dataType:"text",'success':success});
+	}
 });
