@@ -40,5 +40,6 @@ function createAuthForms(){
   
   $('#li_login').click(function(){
 	  chrome.extension.sendRequest({'action':'doAuth'});
+    $('#li_ext_unauth').hide().html('Please reload the page');
   });
 }
